@@ -64,7 +64,7 @@ const RootLayout = () => {
 
   return (
     <>
-      <StatusBar style="light" hidden animated translucent />
+      <StatusBar style="light" translucent />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="signup" />
         <Stack.Screen name="index" />

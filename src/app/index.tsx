@@ -30,27 +30,37 @@ export default function MainPage() {
       <View className="flex flex-1 flex-row gap-x-5">
         <View className="w-1/2 flex-1 flex flex-col">
           <CardView
-            image={require("@assets/MAINCARD.png")}
+            image={require("@assets/CARD.FRONT.png")}
+            ImageClassName="h-44"
             title="Tarot Reader"
-            description="Des"
+            description="Let the card do all rest of the magic"
           />
           <CardView
-            image={require("@assets/MAINCARD.png")}
-            title="Tarot Reader"
+            image={require("@assets/ball.png")}
+            title="Crystal Ball"
+            ImageClassName="-rotate-12"
             description="Des"
           />
         </View>
         <View className="w-1/2 flex-1 flex flex-col">
-          <CardView
-            image={require("@assets/MAINCARD.png")}
-            title="Learn Horoscope"
-            description="Horoscope is the study..."
-          />
-          <CardView
-            image={require("@assets/MAINCARD.png")}
-            title="Tarot Reader"
-            description="Des"
-          />
+          <View className="flex-[.4] ">
+            <CardView
+              image={require("@assets/horoscope.png")}
+              title="Learn Horoscope"
+              ImageClassName="h-28"
+              description="Horoscope is the study..."
+              className=" h-[40%] rounded-full "
+            />
+          </View>
+          <View className="flex-[.6] ">
+            <CardView
+              image={require("@assets/Card.png")}
+              title="Palmistry"
+              description="Des"
+              className=" h-[60%]"
+            />
+          </View>
+        
         </View>
       </View>
     </SafeAreaView>
@@ -59,11 +69,13 @@ export default function MainPage() {
 
 function CardView({
   className,
+  ImageClassName,
   image,
   title,
   description,
 }: {
   className?: string;
+  ImageClassName?: string;
   image: ImageSourcePropType;
   title: string;
   description: string;
@@ -71,40 +83,31 @@ function CardView({
   return (
     <TouchableOpacity
       className={
-        "border border-primary/50 flex flex-1 rounded-2xl overflow-hidden my-2 justify-center items-center" +
+        "border border-primary/50 flex flex-1 rounded-2xl overflow-hidden my-2 justify-center items-center " +
         (className ? ` ${className}` : "")
       }
     >
       <ImageBackground
-        resizeMode="repeat"
+        resizeMode="stretch"
         resizeMethod="resize"
         className="flex-1 flex justify-center items-center py-6 px-2"
-        source={image}
+        source={require("@assets/MAINCARD.png")}
       >
         <View className="flex justify-evenly items-center flex-1 ">
           <View
-            style={{
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 7,
-              },
-              shadowOpacity: 0.43,
-              shadowRadius: 9.51,
-
-              elevation: 15,
-            }}
             className="shadow-2xl"
           >
             <Image
-              source={require("@assets/Card.png")}
-              className="h-36 flex rotate-12 "
+              source={image}
+              className={
+                "h-32 flex rotate-12 " + (ImageClassName ? ImageClassName : "")
+              }
               resizeMode="contain"
             />
           </View>
           <View className="w-full flex ">
-            <Text className="text-white font-DMSerif text-xl">{title}</Text>
-            <Text className="text-white font-sans text-xs">{description}</Text>
+            <Text className="text-white font-DMSerif text-2xl text-center">{title}</Text>
+            {/* <Text className="text-white font-sans text-xs">{description}</Text> */}
           </View>
         </View>
       </ImageBackground>
